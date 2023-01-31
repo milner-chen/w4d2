@@ -1,7 +1,6 @@
 require_relative 'piece'
 
 class Board
-    attr_reader :grid
 
     def initialize
         @grid = Array.new(8) { Array.new(8) }
@@ -10,10 +9,6 @@ class Board
                 @grid[i][j] = Piece.new
             end
         end
-    end
-
-    def [](pos)
-        grid[pos[0]][pos[1]]
     end
 
     def move_piece(start_pos, end_pos)
@@ -30,6 +25,12 @@ class Board
     end
 
     private
+    attr_reader :grid
+
+    def [](pos)
+        grid[pos[0]][pos[1]]
+    end
+
     def []=(pos, value)
         grid[pos[0]][pos[1]] = value
     end
