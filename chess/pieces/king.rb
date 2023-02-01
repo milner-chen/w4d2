@@ -2,7 +2,7 @@ require "colorize"
 require_relative "../piece"
 
 class King < Piece
-    include Stepable
+    include Steppable
 
     def symbol
         "♚".colorize(color)

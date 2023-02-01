@@ -1,13 +1,43 @@
 require_relative 'board'
+require_relative 'pieces/null'
 
 module Slideable
-    ORTHOGONAL_DIRS = []
-    DIAGONAL_DIRS = []
-    def moves
+
+    ORTHOGONAL_DIRS = [
+        [-1, 0],    #up
+        [1, 0],     #down
+        [0, -1],    #left
+        [0, 1]      #right
+    ].freeze
+    DIAGONAL_DIRS = [
+        [-1, -1],   #up-left
+        [-1, 1],    #up-right
+        [1, -1],    #down-left
+        [1, 1]      #down-right
+    ].freeze
+
+    def orthogonal_dirs
+        ORTHOGONAL_DIRS
     end
+
+    def diagonal_dirs
+        DIAGONAL_DIRS
+    end
+
+    def moves
+        possible_moves = []
+        move_dirs.each do |dir|
+            possible_moves += grow_unblocked_moves_in_dir(dir)
+        end
+        possible_moves
+    end
+
+    def grow_unblocked_moves_in_dir(dir)
+
+
 end
 
-module Stepable
+module Steppable
 end
 
 
@@ -20,9 +50,11 @@ class Piece
     end
 
     def to_s
+        symbol
     end
 
     def empty?
+        self.is_a?(NullPiece)
     end
     
     def valid_moves
