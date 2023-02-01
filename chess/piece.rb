@@ -32,8 +32,34 @@ module Slideable
         possible_moves
     end
 
-    def grow_unblocked_moves_in_dir(dir)
+    private
+    def move_dirs
+        raise "NotImplementedError"
+    end
 
+    def grow_unblocked_moves_in_dir(dir)
+        moves_in_dir = []
+        @pos
+        step = [pos[0] + dir[0], pos[1] + dir[1]]
+        while valid?(step, dir)
+            moves << step
+            step = [step[0] + dir[0], step[1] + dir[1]]
+        end
+        moves_in_dir
+    end
+
+    # helper to validate moves
+        # out of bounds
+        # obstacles
+    def valid?(step, dir)
+        return false if step[0] > 7 || step[0] < 0 || step[1] > 7 || step[1] < 0
+        unless @board[step] == NullPiece.instance
+            return false if @color == @board[step].color
+            return false if @board[step[0] - dir[0], step[1] - dir[1]].color != @color
+        end
+        true 
+
+    end
 
 end
 
@@ -42,7 +68,8 @@ end
 
 
 class Piece
-
+    attr_reader :color
+    
     def initialize(color, board, pos)
         @color = color
         @board = board
