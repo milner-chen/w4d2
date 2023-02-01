@@ -1,8 +1,16 @@
-class Pawn
-    def initialize
+require "colorize"
+require_relative "../piece"
+
+class Pawn < Piece
+    include Stepable
+
+    def symbol
+        "♟︎".colorize(color)
     end
 
-    def to_s
-        
+    protected
+
+    def move_diffs
     end
+
 end

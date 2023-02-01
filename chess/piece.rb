@@ -10,6 +10,7 @@ end
 module Stepable
 end
 
+
 class Piece
 
     def initialize(color, board, pos)
