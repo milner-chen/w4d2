@@ -9,6 +9,7 @@ module Slideable
         [0, -1],    #left
         [0, 1]      #right
     ].freeze
+    
     DIAGONAL_DIRS = [
         [-1, -1],   #up-left
         [-1, 1],    #up-right
