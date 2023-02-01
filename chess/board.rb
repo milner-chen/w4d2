@@ -39,13 +39,13 @@ class Board
     end
 
     def move_piece(start_pos, end_pos)
-        if self[start_pos] == nil
+        if self[start_pos] == NullPiece.instance
             raise "there is no piece at #{start_pos}"
         elsif end_pos[0] < 0 || end_pos[0] > 7 || end_pos[1] < 0 || end_pos[1] > 7
             raise "the piece cannot move to #{end_pos}"
         else
             self[end_pos] = self[start_pos]
-            self[start_pos] = nil
+            self[start_pos] = NullPiece.instance
         end
     end
 

@@ -61,11 +61,11 @@ module Steppable
 
     KING_DIFF = [
         [-1, 0],    #up
-        [1, 0],     #down
-        [0, -1],    #left
-        [0, 1],     #right
         [-1, -1],   #up-left
         [-1, 1],    #up-right
+        [0, -1],    #left
+        [0, 1],     #right
+        [1, 0],     #down
         [1, -1],    #down-left
         [1, 1]      #down-right
     ].freeze
@@ -80,6 +80,7 @@ module Steppable
         [-1, 2],
         [-1, -1]
     ]
+    
 
     def king_diff
         KING_DIFF
