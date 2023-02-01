@@ -46,6 +46,7 @@ class Board
         else
             self[end_pos] = self[start_pos]
             self[start_pos] = NullPiece.instance
+            self[end_pos].pos = end_pos
         end
     end
 

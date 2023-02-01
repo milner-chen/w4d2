@@ -16,16 +16,11 @@ class Pawn < Piece
 
     def threatening?
         if color == :white
-
             return board[[pos[0] - 1, pos[1] - 1]].color == :black ||
-                board[[pos[0] - 1, pos[1] + 1]].color == :black
-            
-        end
-        if color == :black
-
+                board[[pos[0] - 1, pos[1] + 1]].color == :black 
+        elsif color == :black
             return board[[pos[0] + 1, pos[1] - 1]].color == :white ||
                 board[[pos[0] + 1, pos[1] + 1]].color == :white
-            
         end 
     end
 
