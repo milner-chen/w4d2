@@ -11,6 +11,7 @@ class Knight < Piece
     protected
 
     def move_diffs
+        knight_diff
     end
 
 end

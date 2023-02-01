@@ -46,11 +46,11 @@ module Slideable
         moves_in_dir
     end
 
-    def valid?(step, dir)
+    def valid?(step, dirf)
         return false if step[0] > 7 || step[0] < 0 || step[1] > 7 || step[1] < 0
         unless @board[step] == NullPiece.instance
             return false if @color == @board[step].color
-            return false if @board[[step[0] - dir[0], step[1] - dir[1]]].color != @color
+            return false if @board[[step[0] - dirf[0], step[1] - dirf[1]]].color != @color
         end
         true
     end
@@ -58,6 +58,59 @@ module Slideable
 end
 
 module Steppable
+
+    KING_DIFF = [
+        [-1, 0],    #up
+        [1, 0],     #down
+        [0, -1],    #left
+        [0, 1],     #right
+        [-1, -1],   #up-left
+        [-1, 1],    #up-right
+        [1, -1],    #down-left
+        [1, 1]      #down-right
+    ].freeze
+
+    KNIGHT_DIFF = [
+        [2, 1],
+        [2, -1],
+        [-2, 1],
+        [-2, -1],
+        [1, 2],
+        [1,-2],
+        [-1, 2],
+        [-1, -1]
+    ]
+
+    def king_diff
+        KING_DIFF
+    end
+
+    def knight_diff
+        KNIGHT_DIFF
+    end
+
+    def valid?(step, dirf)
+        return false if step[0] > 7 || step[0] < 0 || step[1] > 7 || step[1] < 0
+        unless @board[step] == NullPiece.instance
+            return false if @color == @board[step].color
+            return false if @board[[step[0] - dirf[0], step[1] - dirf[1]]].color != @color
+        end
+        true
+    end
+
+    def moves
+        possible_moves = []
+        move_diffs.each do |diff|
+            step = [@pos[0] + diff[0], @pos[1] + diff[1]]
+            possible_moves << step if valid?(step, diff)
+        end
+        possible_moves
+    end
+
+    def move_diffs
+        raise "NotImplementedError"
+    end
+
 end
 
 class Piece

@@ -11,6 +11,7 @@ class King < Piece
     protected
 
     def move_diffs
+        king_diff
     end
 
 end

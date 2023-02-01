@@ -1,5 +1,10 @@
 require_relative 'piece'
+require_relative 'pieces/king'
 require_relative 'pieces/queen'
+require_relative 'pieces/rook'
+require_relative 'pieces/bishop'
+require_relative 'pieces/knight'
+require_relative 'pieces/pawn'
 
 class Board
 
@@ -7,7 +12,7 @@ class Board
         @grid = Array.new(8) { Array.new(8) }
         [0, 1].each do |i|
             @grid[i].each_index do |j|
-                @grid[i][j] = Queen.new(:black, self, [i, j])
+                @grid[i][j] = King.new(:black, self, [i, j])
             end
         end
         (2..5).each do |i|
