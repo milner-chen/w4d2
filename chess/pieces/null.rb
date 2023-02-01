@@ -7,6 +7,7 @@ class NullPiece
     def initialize
         @color = nil
         @symbol = ' '
+    end
 
     def color
         @color

@@ -1,12 +1,23 @@
 require_relative 'piece'
+require_relative 'pieces/queen'
 
 class Board
 
     def initialize
         @grid = Array.new(8) { Array.new(8) }
-        [0, 1, 6, 7].each do |i|
+        [0, 1].each do |i|
             @grid[i].each_index do |j|
-                @grid[i][j] = Piece.new
+                @grid[i][j] = Queen.new(:black, self, [i, j])
+            end
+        end
+        (2..5).each do |i|
+            @grid[i].each_index do |j|
+                @grid[i][j] = NullPiece.instance
+            end
+        end
+        [6, 7].each do |i|
+            @grid[i].each_index do |j|
+                @grid[i][j] = Queen.new(:white, self, [i, j])
             end
         end
     end
@@ -19,12 +30,10 @@ class Board
         else
             self[end_pos] = self[start_pos]
             self[start_pos] = nil
-            # grid[end_pos[0]][end_pos[1]] = grid[start_pos[0]][start_pos[1]]
-            # grid[start_pos[0]][start_pos[1]] = nil
         end
     end
 
-    private
+    # private
     attr_reader :grid
 
     def [](pos)

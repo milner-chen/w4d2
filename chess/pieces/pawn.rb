@@ -2,7 +2,7 @@ require "colorize"
 require_relative "../piece"
 
 class Pawn < Piece
-    include Stepable
+    include Steppable
 
     def symbol
         "♟︎".colorize(color)
